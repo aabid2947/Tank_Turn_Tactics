@@ -63,7 +63,6 @@ const Move = (Board, posX, posY, valid_moves) => {
         if (posX == pos[0] && posY == pos[1]) {
             move = true
         }
-
     })
     return move
 }

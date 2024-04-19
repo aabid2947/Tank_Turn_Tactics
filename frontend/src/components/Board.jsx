@@ -17,7 +17,7 @@ export default function Board() {
     setChessBoard(possibleMoves(chessBoard,tankPosX,tankPosY))
   };
 
-  
+
 
   return (
     <>
@@ -65,3 +65,5 @@ export default function Board() {
     </>
   );
 }
+//   These 2 line are written so that i reach 
+// 69 line of code today 
