@@ -11,14 +11,16 @@ app.use(express.json())
 
 
 // Connecting to mongodb atlas database
-mongoose.connect("connection string")
+mongoose.connect("mongodb+srv://aabidhussainpas:thor7860@cluster01.k97jqfq.mongodb.net/?retryWrites=true&w=majority&appName=Cluster01")
     .then(() => {
         console.log("connected")
         // running the server
         app.listen(5000, () => {
-            console.log(89)
+            console.log(69)
         })
     })
     .catch((e) => {
         console.log(e)
     })
+
+

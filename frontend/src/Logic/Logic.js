@@ -47,12 +47,8 @@ const possibleMoves = (Board, positionX, positionY) => {
             }
         }
     })
-    if (valid_moves) {
-        valid_moves.forEach((pos, index) => {
-            Board[pos[0]][pos[1]] = "s";
-        });
-    }
-    return Board
+    console.log(valid_moves)
+    return valid_moves
 
 }
 
@@ -66,6 +62,7 @@ const Move = (Board, posX, posY, valid_moves) => {
     })
     return move
 }
+
 
 
 module.exports = {
