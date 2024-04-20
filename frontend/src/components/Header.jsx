@@ -1,5 +1,6 @@
 import React from "react";
 import bootstrap from "bootstrap";
+import { Link } from "react-router-dom";
 
 export default function Header() {
   return (
@@ -24,14 +25,14 @@ export default function Header() {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-lg-0 fs-4">
               <li className="nav-item mx-2">
-                <a className="nav-link active" aria-current="page" href="#">
+                <Link className="nav-link active" aria-current="page" to="/">
                   Home
-                </a>
+                </Link>
               </li>
               <li className="nav-item mx-2">
-                <a className="nav-link" href="#">
+                <Link className="nav-link" to="/profile">
                   Profile
-                </a>
+                </Link>
               </li>
               <li className="nav-item mx-2 dropdown">
                 <a
