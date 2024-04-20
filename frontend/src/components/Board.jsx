@@ -22,10 +22,10 @@ export default function Board() {
   return (
     <>
       {chessBoard.map((row, rIndex) => (
-        <div className="row" key={rIndex}>
+        <div className="row-board" key={rIndex}>
           {row.map((_, cIndex) => (
             <div
-              className={`box ${
+              className={`box-board ${
                 (rIndex + cIndex) % 2 === 0 ? "black" : "white"
               }`}
               onClick={() => showPossibleMoves(rIndex, cIndex)}

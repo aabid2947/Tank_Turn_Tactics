@@ -1,12 +1,12 @@
 import logo from './logo.svg';
 import './App.css';
-import Board from './components/Board';
+import PlayField from './pages/PlayField';
 
 function App() {
   return (
     <div className="App">
       
-      <Board/>
+      <PlayField/>
     </div>
   )
 }
