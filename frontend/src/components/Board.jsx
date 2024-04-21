@@ -7,78 +7,41 @@ import Tank from "../Logic/Tank.js";
 
 export default function Board() {
   // Array which will be used to
-  // display the chessboard
-  const [chessBoard, setChessBoard] = useState([]);
-  const [validMoves, setValidMoves] = useState([]);
-  const [Tank1, setTank1] = useState({
-    name: "Aabid",
-    life: 3,
-    range: 1,
-    energy: 3,
-    xcor: -1,
-    ycor: -1,
-    turn: true,
-  });
+  // display the board
+ 
+  const getTank = async ()=>{
+    const board = await fetch('./board')
+    const Tank = await fetch('/api/').then(res>= res.json())
+    await post('./board',xcor,ycor)
+  }
 
-  const [Tank2, setTank2] = useState({
-    name: "firoz",
-    life: 3,
-    range: 1,
-    energy: 3,
-    xcor: -1,
-    ycor: -1,
-    turn: false,
-  });
-  const [Tank3, setTank3] = useState({
-    name: "harshit",
-    life: 3,
-    range: 1,
-    energy: 3,
-    xcor: -1,
-    ycor: -1,
-    turn: false,
-  });
+  const [board, setboard] = useState([]);
+  const [validMoves, setValidMoves] = useState([]);
+
 
   const showBoard = () => {
     let board = InitializeGame();
-    setChessBoard(board);
-
-    for (let i = 0; i < 16; i++) {
-      for (let j = 0; j < 16; j++) {
-        if (board[i][j] == "t") {
-          if (Tank1.xcor < 0 && Tank1.ycor < 0) {
-            setTank1((prevState) => ({
-              ...prevState, // Spread the previous state to avoid mutation
-              xcor: i,
-              ycor: j,
-            }));
-          }
-          break;
-        }
-      }
-    }
+    setboard(board);
   };
 
   const showPossibleMoves = (tankPosX, tankPosY) => {
-    console.log(Tank1);
-    const valid_moves = possibleMoves(chessBoard, tankPosX, tankPosY);
+    const valid_moves = possibleMoves(board, tankPosX, tankPosY);
     setValidMoves(valid_moves);
-    let board = chessBoard;
+    let board = board;
     if (valid_moves) {
       valid_moves.forEach((pos, index) => {
         board[pos[0]][pos[1]] = "s";
       });
     }
 
-    setChessBoard(board);
+    setboard(board);
   };
 
   const moveTank = (xcor, ycor) => {
-    let board = chessBoard;
+    let board = board;
     validMoves.forEach((pos) => {
       if (pos[0] == xcor && pos[1] == ycor) {
         board[xcor][ycor] = "t";
-        board[Tank1.xcor][Tank1.ycor] = "";
       }
     });
     for (let i = 0; i < 16; i++) {
@@ -94,7 +57,7 @@ export default function Board() {
   return (
     <>
       <div className="container d-flex align-item-center">
-        {chessBoard.map((row, rIndex) => (
+        {board.map((row, rIndex) => (
           <div className="row m-0" key={rIndex}>
             {row.map((_, cIndex) => (
               <div
@@ -111,7 +74,7 @@ export default function Board() {
                 key={cIndex}
                 style={{ width: "50px", height: "50px" }}
               >
-                {chessBoard[rIndex][cIndex] === "s" && (
+                {board[rIndex][cIndex] === "s" && (
                   <>
                     <img
                       width={20}
@@ -121,7 +84,7 @@ export default function Board() {
                     />
                   </>
                 )}
-                {chessBoard[rIndex][cIndex] === "t" && (
+                {board[rIndex][cIndex] === "t" && (
                   <>
                     <img
                       width={50}
