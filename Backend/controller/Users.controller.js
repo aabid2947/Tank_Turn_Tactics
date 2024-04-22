@@ -1,9 +1,9 @@
-const { get } = require('mongoose')
-const Users = require('../models/Users.model')
+
+import Users from '../models/Users.model.js'
 
 
 // Create New user
-const createUser = async (res,req) =>{
+export const createUser = async (res,req) =>{
     try{
         const createdUser =await Users.create(req.body)
         res.status(200).json(createdUser)
@@ -14,7 +14,7 @@ const createUser = async (res,req) =>{
 }
 
 // get User
-const getUser = async (res,req) =>{
+export const getUser = async (res,req) =>{
     try{
         const {id } = req.params
         const user =await Users.findById(id)
@@ -30,7 +30,7 @@ const getUser = async (res,req) =>{
     }
 }
 
-const deleteUser = async (res,req)=>{
+export const deleteUser = async (res,req)=>{
     try{
         // get id of the user 
         const {id} = req.params
@@ -50,8 +50,3 @@ const deleteUser = async (res,req)=>{
 }
 
 
-module.exports = {
-    createUser,
-    getUser,
-    deleteUser
-}

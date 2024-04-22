@@ -1,6 +1,6 @@
-const Tank = require('../models/Tank.model')
+import Tank from '../models/Tank.model.js'
 
-const createTank = async (req,res)=>{
+export const createTank = async (req,res)=>{
     try{
         const Tank = await Tank.create(req.body)
         res.status(200).json(Tank)
@@ -11,7 +11,7 @@ const createTank = async (req,res)=>{
     }
 }
 
-const updateLife =async (req,res)=>{
+export const updateLife =async (req,res)=>{
     try{
         const {id} = req.params
         const {life} = req.query
@@ -38,7 +38,7 @@ const updateLife =async (req,res)=>{
     }
 }
 
-const updateEnergy =async (req,res)=>{
+export const updateEnergy =async (req,res)=>{
     try{
 
         const { id } = req.params;
@@ -67,7 +67,7 @@ const updateEnergy =async (req,res)=>{
     }
 }
 
-const updateRange =async (req,res)=>{
+export const updateRange =async (req,res)=>{
     try{
         const {id} = req.params
         const {range} = req.query
@@ -94,7 +94,7 @@ const updateRange =async (req,res)=>{
     }
 }
 
-const updatexCoordinate =async (req,res)=>{
+export const updatexCoordinate =async (req,res)=>{
     try{
         const {id} = req.params
         const {xCoordinate} = req.query
@@ -121,7 +121,7 @@ const updatexCoordinate =async (req,res)=>{
     }
 }
 
-const updateyCoordinate =async (req,res)=>{
+export const updateyCoordinate =async (req,res)=>{
     try{
         const {id} = req.params
         const {yCoordinate} = req.query
@@ -148,7 +148,7 @@ const updateyCoordinate =async (req,res)=>{
     }
 }
 
-const updateColor =async (req,res)=>{
+export const updateColor =async (req,res)=>{
     try{
         const {id} = req.params
         const {color} = req.query
@@ -170,15 +170,7 @@ const updateColor =async (req,res)=>{
 }
 
 
-module.exports = {
-    createTank,
-    updateColor,
-    updateEnergy,
-    updateLife,
-    updateRange,
-    updatexCoordinate,
-    updateyCoordinate
-}
+
 
 
 

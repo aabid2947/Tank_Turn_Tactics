@@ -1,6 +1,6 @@
-const Board = require('../models/')
+import Board  from "../models/Board.model.js"
 
-const createBoard = (req,res)=>{
+export const createBoard = (req,res)=>{
     try {
         const Board = Board.create(req.body)
         res.status(200).json(Board)
@@ -10,7 +10,7 @@ const createBoard = (req,res)=>{
     }
 }
 
-const deleteBoard =async (res,req) =>{
+export const deleteBoard =async (res,req) =>{
     try{
         // get id of the user 
         const {id} = req.params
@@ -28,7 +28,3 @@ const deleteBoard =async (res,req) =>{
     }
 }
 
-module.exports = {
-    createBoard,
-    deleteBoard
-}

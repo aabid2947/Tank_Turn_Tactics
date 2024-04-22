@@ -1,4 +1,5 @@
-const mongoose = require('mongoose')
+import mongoose from "mongoose"
+
 
 const TankSchema = mongoose.Schema(
 
@@ -49,4 +50,4 @@ const TankSchema = mongoose.Schema(
 
 const Tank = mongoose.model("Tank",TankSchema)
 
-module.exports = Tank
+export default Tank

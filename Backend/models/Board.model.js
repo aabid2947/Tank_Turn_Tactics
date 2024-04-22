@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+import mongoose from "mongoose"
 
 const BoardSchema = mongoose.Schema(
 
@@ -23,4 +23,4 @@ const BoardSchema = mongoose.Schema(
 
 const Board = mongoose.model("Board",BoardSchema)
 
-module.exports = Board
+export default Board

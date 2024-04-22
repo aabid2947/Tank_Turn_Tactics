@@ -4,6 +4,11 @@ import UserRoutes from './Routes/Users.routes.js'
 import TankRoutes from './Routes/Tank.routes.js'
 import BoardRoutes from './Routes/Board.routes.js'
 
+// const UserRoutes = require('./Routes/Users.routes')
+// const TankRoutes = require('./Routes/Tank.routes')
+// const BoardRoutes = require('./Routes/Board.routes')
+
+
 const app = express()
 
 
