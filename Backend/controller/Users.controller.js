@@ -3,7 +3,7 @@ import Users from '../models/Users.model.js'
 
 
 // Create New user
-export const createUser = async (res,req) =>{
+export const createUser = async (req,res) =>{
     try{
         const createdUser =await Users.create(req.body)
         res.status(200).json(createdUser)
@@ -14,7 +14,7 @@ export const createUser = async (res,req) =>{
 }
 
 // get User
-export const getUser = async (res,req) =>{
+export const getUser = async (req,res) =>{
     try{
         const {id } = req.params
         const user =await Users.findById(id)

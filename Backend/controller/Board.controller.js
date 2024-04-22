@@ -10,7 +10,7 @@ export const createBoard = (req,res)=>{
     }
 }
 
-export const deleteBoard =async (res,req) =>{
+export const deleteBoard =async (req,res) =>{
     try{
         // get id of the user 
         const {id} = req.params
