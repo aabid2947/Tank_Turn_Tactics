@@ -170,5 +170,15 @@ const updateColor =async (req,res)=>{
 }
 
 
+module.exports = {
+    createTank,
+    updateColor,
+    updateEnergy,
+    updateLife,
+    updateRange,
+    updatexCoordinate,
+    updateyCoordinate
+}
+
 
 

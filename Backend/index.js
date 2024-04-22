@@ -1,5 +1,8 @@
 import express from 'express'
 import mongoose from 'mongoose'
+import UserRoutes from './Routes/Users.routes.js'
+import TankRoutes from './Routes/Tank.routes.js'
+import BoardRoutes from './Routes/Board.routes.js'
 
 const app = express()
 
@@ -23,4 +26,9 @@ mongoose.connect("mongodb+srv://aabidhussainpas:thor7860@cluster01.k97jqfq.mongo
         console.log(e)
     })
 
+
+// routes
+app.use("/api/user",UserRoutes)
+app.use('./api/tank',TankRoutes)
+app.use('./api/board',BoardRoutes)
 
