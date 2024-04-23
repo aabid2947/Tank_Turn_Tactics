@@ -1,18 +1,19 @@
-import mongoose from "mongoose"
+import mongoose, { Query } from "mongoose"
 
 const BoardSchema = mongoose.Schema(
-
     {
         gameGrid: {
             type: [[mongoose.Schema.Types.Mixed]],
             default: [[]] // Default value is an empty 2D array
         },
-
         boardID: {
             type: String,
             required: true
+        },
+        tanks: {
+            type: [],
+            required: true
         }
-
     },
     // Provide two extra field 
     // when created and when updated

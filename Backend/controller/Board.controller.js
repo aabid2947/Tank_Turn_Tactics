@@ -1,14 +1,92 @@
 import Board  from "../models/Board.model.js"
 
-export const createBoard = (req,res)=>{
+export const createBoard = async (req, res) => {
     try {
-        const Board = Board.create(req.body)
-        res.status(200).json(Board)
+        const gameGrid = Array.from({ length: 16 }, () => Array.from({ length: 16 }, () => 0));
+
+        const boardID = Math.random().toString(36).substr(2, 9);
+        const newBoard = new BoardModel({
+            gameGrid: gameGrid,
+            boardID: boardID
+        });
+        await newBoard.save();
+
+        res.status(201).json({ message: "Board created successfully", boardID: boardID });
+    
+    } catch (error) {
+        res.status(500).json({ message: error.message });
     }
-    catch(e){
-        res.status(500).json({ message: e.message })
+};
+
+export const addTanks = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { player } = req.body; // Assuming you receive player data in the request body
+
+        // Find the board by its ID
+        const board = await Board.findById(id);
+
+        if (!board) {
+            return res.status(404).json({ message: "Board not found" });
+        }
+        if (board.tanks.length >= 16) {
+            return res.status(400).json({ message: "Maximum number of players reached (16)" });
+        }
+
+        // Update the tanks field with the new player data
+        board.tanks.push(player);
+
+        // Save the updated board
+        await board.save();
+
+        res.status(200).json({ message: "Player added to the board successfully", board: board });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
     }
-}
+};
+
+export const startGame = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        // Find the board by its ID
+        const board = await Board.findById(id);
+
+        if (!board) {
+            return res.status(404).json({ message: "Board not found" });
+        }
+
+        // Ensure there are less than 16 tanks on the board
+        if (board.tanks.length >= 16) {
+            return res.status(400).json({ message: "Board already has maximum number of tanks (16)" });
+        }
+
+        // Calculate the number of tanks needed to fill the board up to 16
+        const remainingTanks = 16 - board.tanks.length;
+
+        // Distribute remaining tanks randomly on the board
+        for (let i = 0; i < remainingTanks; i++) {
+            const randomX = Math.floor(Math.random() * 16); // Random X coordinate (0 to 15)
+            const randomY = Math.floor(Math.random() * 16); // Random Y coordinate (0 to 15)
+
+            // Check if the random coordinates are already occupied by a tank
+            const isOccupied = board.tanks.some(tank => tank.x === randomX && tank.y === randomY);
+
+            // If the random coordinates are not occupied, add a tank at that position
+            if (!isOccupied) {
+                board.tanks.push({ x: randomX, y: randomY });
+            }
+        }
+
+        // Save the updated board with randomly distributed tanks
+        await board.save();
+
+        res.status(200).json({ message: "Tanks distributed randomly on the board", board: board });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
+
 
 export const deleteBoard =async (req,res) =>{
     try{
@@ -27,4 +105,99 @@ export const deleteBoard =async (req,res) =>{
 
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
