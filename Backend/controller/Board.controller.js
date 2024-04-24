@@ -78,6 +78,8 @@ export const startGame = async (req, res) => {
 
             if(  board.gameGrid[randomX][randomY] == 0){
                 board.gameGrid[randomX][randomY] = board.tanks[i]
+                board.tanks[i].xCoordinate = randomX
+                board.tanks[i].yCoordinate = randomY
             }
             else{
                 i--;
