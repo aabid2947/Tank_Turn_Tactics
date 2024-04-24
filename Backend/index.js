@@ -4,7 +4,9 @@ import UserRoutes from './Routes/Users.routes.js'
 import TankRoutes from './Routes/Tank.routes.js'
 import BoardRoutes from './Routes/Board.routes.js'
 
+
 const app = express()
+const connectionString = process.env.CONNECTION_STRING;
 
 
 // attempting to use express.json() middleware in Express 
@@ -14,7 +16,7 @@ app.use(express.json())
 
 
 // Connecting to mongodb atlas database
-mongoose.connect("connection string ")
+mongoose.connect(connectionString)
     .then(() => {
         console.log("connected")
         // running the server
