@@ -34,6 +34,6 @@ mongoose.connect("connection string")
 
 // routes
 app.use("/api/user",UserRoutes)
-// app.use('./api/tank',TankRoutes)
-// app.use('./api/board',BoardRoutes)
+app.use('./api/tank',TankRoutes)
+app.use('./api/board',BoardRoutes)
 
