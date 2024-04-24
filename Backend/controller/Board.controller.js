@@ -5,13 +5,23 @@ export const createBoard = async (req, res) => {
         const gameGrid = Array.from({ length: 16 }, () => Array.from({ length: 16 }, () => 0));
 
         const boardID = Math.random().toString(36).substr(2, 9);
-        const newBoard = new BoardModel({
+        const newBoard = new Board({
             gameGrid: gameGrid,
             boardID: boardID
         });
         await newBoard.save();
 
-        res.status(201).json({ message: "Board created successfully", boardID: boardID });
+        res.status(201).json({ message: "Board created successfully", boardID: boardID,newBoard });
+    
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
+
+export const getAllBoard = async (req, res) => {
+    try {
+        const boards =await  Board.find({})
+        res.status(201).json({ message: "Board created successfully", boards});
     
     } catch (error) {
         res.status(500).json({ message: error.message });
@@ -21,7 +31,8 @@ export const createBoard = async (req, res) => {
 export const addTanks = async (req, res) => {
     try {
         const { id } = req.params;
-        const { player } = req.body; // Assuming you receive player data in the request body
+        const  player  = req.body; // Assuming you receive player data in the request body
+        console.log(req.body)
 
         // Find the board by its ID
         const board = await Board.findById(id);
@@ -29,7 +40,7 @@ export const addTanks = async (req, res) => {
         if (!board) {
             return res.status(404).json({ message: "Board not found" });
         }
-        if (board.tanks.length >= 16) {
+        if (board.tanks.length >=16) {
             return res.status(400).json({ message: "Maximum number of players reached (16)" });
         }
 
@@ -61,27 +72,20 @@ export const startGame = async (req, res) => {
             return res.status(400).json({ message: "Board already has maximum number of tanks (16)" });
         }
 
-        // Calculate the number of tanks needed to fill the board up to 16
-        const remainingTanks = 16 - board.tanks.length;
-
-        // Distribute remaining tanks randomly on the board
-        for (let i = 0; i < remainingTanks; i++) {
+        for(let i =0;i<board.tanks.length;i++){
             const randomX = Math.floor(Math.random() * 16); // Random X coordinate (0 to 15)
             const randomY = Math.floor(Math.random() * 16); // Random Y coordinate (0 to 15)
 
-            // Check if the random coordinates are already occupied by a tank
-            const isOccupied = board.tanks.some(tank => tank.x === randomX && tank.y === randomY);
-
-            // If the random coordinates are not occupied, add a tank at that position
-            if (!isOccupied) {
-                board.tanks.push({ x: randomX, y: randomY });
+            if(  board.gameGrid[randomX][randomY] == 0){
+                board.gameGrid[randomX][randomY] = board.tanks[i]
             }
+            else{
+                i--;
+            }   
         }
+        await board.save()
+        res.status(200).json({ message: "Tanks distributed randomly on the board", board: board }); 
 
-        // Save the updated board with randomly distributed tanks
-        await board.save();
-
-        res.status(200).json({ message: "Tanks distributed randomly on the board", board: board });
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
@@ -105,38 +109,6 @@ export const deleteBoard =async (req,res) =>{
 
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

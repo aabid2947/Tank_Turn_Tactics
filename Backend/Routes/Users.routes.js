@@ -1,4 +1,5 @@
-import { createUser,getUser,deleteUser } from '../controller/Users.controller.js'
+import { get } from 'mongoose'
+import { createUser,getUser,deleteUser,getAllUser } from '../controller/Users.controller.js'
 
 import express from 'express'
 const router = express.Router()
@@ -8,9 +9,12 @@ const router = express.Router()
 router.post('/createUser',createUser)
 
 // get user
-router.get('/getUser',getUser)
+router.get('/getUser/:id',getUser)
+
+// get all user
+router.get('/getAllUser',getAllUser)
 
 // delete user
-router.delete('/deleteUser',deleteUser)
+router.delete('/deleteUser/:id',deleteUser)
 
 export default router

@@ -30,6 +30,23 @@ export const getUser = async (req,res) =>{
     }
 }
 
+// get all user
+export const getAllUser = async (req,res) =>{
+    try{
+        const user =await Users.find({})
+
+        if(!user){
+            res.status(400).json({message:"User not found"})
+        }
+
+        res.status(200).json(user)
+    }
+    catch(e){
+        res.status(400).json({message:e.message})
+    }
+}
+
+
 export const deleteUser = async (res,req)=>{
     try{
         // get id of the user 

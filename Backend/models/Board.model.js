@@ -11,7 +11,7 @@ const BoardSchema = mongoose.Schema(
             required: true
         },
         tanks: {
-            type: [],
+            type: [mongoose.Schema.Types.Mixed],
             required: true
         }
     },
