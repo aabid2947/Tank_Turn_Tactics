@@ -4,11 +4,6 @@ import UserRoutes from './Routes/Users.routes.js'
 import TankRoutes from './Routes/Tank.routes.js'
 import BoardRoutes from './Routes/Board.routes.js'
 
-// const UserRoutes = require('./Routes/Users.routes')
-// const TankRoutes = require('./Routes/Tank.routes')
-// const BoardRoutes = require('./Routes/Board.routes')
-
-
 const app = express()
 
 
@@ -19,7 +14,7 @@ app.use(express.json())
 
 
 // Connecting to mongodb atlas database
-mongoose.connect("connection string")
+mongoose.connect("mongodb+srv://aabidhussainpas:thor7860@cluster01.k97jqfq.mongodb.net/?retryWrites=true&w=majority&appName=Cluster01")
     .then(() => {
         console.log("connected")
         // running the server
