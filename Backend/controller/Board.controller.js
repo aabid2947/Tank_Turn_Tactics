@@ -61,6 +61,7 @@ export const movesPlayed = (req,res)=>{
         const board = Board(req,res)
         const Bajji = req.body
 
+        // push move to moveQueue
         board.moveQueue.push(Bajji)
     } catch (error) {
         res.status(500).json({ message: error.message });
@@ -110,7 +111,7 @@ export const startGame = async (req, res) => {
     }
 };
 
-
+// delete Board
 export const deleteBoard =async (req,res) =>{
     try{
         // get id of the user 
