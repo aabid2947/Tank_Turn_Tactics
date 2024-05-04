@@ -1,15 +1,14 @@
-import { get } from "mongoose"
 
 // Start game Timer
 export  const  gameTimer =async (board)=>{
     try {
-        while(!gameOver){
-            const timeInterval = setInterval(()=>{
+        
+        const timeInterval = setInterval(()=>{
             increaseEnergy(board)
-            resolveMove()
-
-            },600000)
-        }
+            resolveMove(board)
+            gameTimer()
+        },600000)
+        
     } catch (error) {
         return error
     }
