@@ -111,6 +111,28 @@ export const startGame = async (req, res) => {
     }
 };
 
+// game over
+export const gameOver =async (req,res) =>{
+    try{
+        const {id} = req.params
+        const board = getBoard(req,res)
+        let count = 0
+
+        board.tank.forEach(player => {
+            if(player.life>0){
+                count++
+            }
+            if(count > 1){
+                 Board.findByIdAndDelete(id)
+            }
+        });
+        res.status(200).json({message:"User deleted succesfully"})
+    }
+    catch(e){
+        res.status(400).json({message:e.message})
+
+    }
+}
 // delete Board
 export const deleteBoard =async (req,res) =>{
     try{

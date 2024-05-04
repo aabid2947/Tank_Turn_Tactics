@@ -48,9 +48,12 @@ export const resolveMove = (board)=>{
            else if(Bajji.action == "Shoot"){
                shootTank(board,Bajji)
            }
-           else if(Bajji.action == "Transfer"){
-               (board,Bajji)
+           else if(Bajji.action == "TransferEnergy"){
+               transferEnergy(board,Bajji)
            }
+           else if(Bajji.action == "TransferLife"){
+            transferLife(board,Bajji)
+        }
            else if(Bajji.action == "Upgrade"){
                upgradeRange(board,Bajji)
            }
