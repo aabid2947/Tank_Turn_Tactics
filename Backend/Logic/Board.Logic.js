@@ -1,3 +1,5 @@
+import { get } from "mongoose"
+
 // Start game Timer
 export  const  gameTimer =async (board)=>{
     try {
@@ -21,7 +23,7 @@ const increaseEnergy =async (board)=>{
             
         })
 
-        board.save()   
+        await board.save()   
         return true
     } catch (error) {
         return error
@@ -49,7 +51,7 @@ export const resolveMove = (board)=>{
                transferEnergy()
            }
            else if(Bajji.action == "Upgrade"){
-               upgradeRange()
+               upgradeRange(board)
            }
        })
        return true
@@ -59,17 +61,23 @@ export const resolveMove = (board)=>{
    }
 }
 
-// move tank
-export const moveTank=(board) =>{
+// get tank
+export const getTank = async (board,Bajji)=>{
     try {
-        let tank;
         board.tanks.forEach((player)=>{
             if(player.id == Bajji.tankId){
                 tank = player
-                tankXpos = player.xCoordinate
-                tankYpos = player.yCoordinate
             } 
         })
+    } catch (error) {
+        return error
+    }
+}
+// move tank
+export const moveTank=async (board,Bajji) =>{
+    try {
+        const tank = getTank(board,Bajji)
+        
         const valid_moves = possibleMoves(board.gameGrid,tank.xCoordinate,tank.yCoordinate)
 
         valid_moves.forEach((pos)=>{
@@ -77,8 +85,8 @@ export const moveTank=(board) =>{
                 tank.xCoordinate = Bajji.xCor
                 tank.yCoordinate = Bajji.yCor
             }
-            board.save()
         })
+        await board.save()
     } catch (error) {
         return error
     }
@@ -109,12 +117,25 @@ export const possibleMoves = (Board, positionX, positionY) => {
 }
 
 
-export const Move = (Board, posX, posY, valid_moves) => {
-    let move = false
-    valid_moves.forEach((pos) => {
-        if (posX == pos[0] && posY == pos[1]) {
-            move = true
+export const upgradeRange = async(board,Bajji) =>{
+    try {
+        const tank = getTank(board,Bajji)
+        const costLookup = {
+            2:3,
+            3:4,
+            4:6,
+            5:7
         }
-    })
-    return move
+        if(tank.range in costLookup && tank.energy >=costLookup[tank.range] ){
+            tank.range++
+            tank.energy -= costLookup[tank.range]
+        }
+        else if(tank.energy >= 7){
+            tank.range++
+            tank.energy -= 7
+        }
+
+    } catch (error) {
+        return error
+    }
 }

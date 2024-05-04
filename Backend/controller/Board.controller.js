@@ -1,4 +1,5 @@
 import Board  from "../models/Board.model.js"
+import { gameTimer } from "../Logic/Board.Logic.js";
 
 export const createBoard = async (req, res) => {
     try {
@@ -52,10 +53,21 @@ export const addTanks = async (req, res) => {
 
         res.status(200).json({ message: "Player added to the board successfully", board: board });
     } catch (error) {
-        res.status(500).json({ message: error.message });
     }
 };
 
+export const movesPlayed = (req,res)=>{
+    try {
+        const board = Board(req,res)
+        const Bajji = req.body
+
+        board.moveQueue.push(Bajji)
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+
+    }
+}
+ 
 export const startGame = async (req, res) => {
     try {
         const { id } = req.params;
@@ -85,6 +97,11 @@ export const startGame = async (req, res) => {
                 i--;
             }   
         }
+
+        // start timer
+        gameTimer(board)
+
+        // save changes to board
         await board.save()
         res.status(200).json({ message: "Tanks distributed randomly on the board", board: board }); 
 

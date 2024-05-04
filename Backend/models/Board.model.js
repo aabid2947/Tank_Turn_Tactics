@@ -13,6 +13,10 @@ const BoardSchema = mongoose.Schema(
         tanks: {
             type: [mongoose.Schema.Types.Mixed],
             required: true
+        },
+        moveQueue: {
+            type: [mongoose.Schema.Types.Mixed],
+            required: true
         }
     },
     // Provide two extra field 
