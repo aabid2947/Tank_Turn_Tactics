@@ -1,0 +1,11 @@
+
+.custom-navbar {
+    background-color: #0B0D13; /* Background color */
+  }
+  
+.custom-navbar .nav-link {
+    color: white !important; /* Text color with !important declaration */
+  }
+.custom-ul{
+    color: rgb(217, 217, 217)  !important;
+}
