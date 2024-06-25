@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import Header from "../components/Header";
 import axios from "axios";
-import React from 'react'
-import Header from '../components/Header'
 
 export default function Home() {
   const [isInputID, setIsInputID] = useState(false);

@@ -5,13 +5,8 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Home from './pages/Home';
 import Profile from './pages/Profile';
 import App from './App'
 import ErrorPage from './pages/Error';
