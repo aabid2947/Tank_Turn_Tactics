@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import Home from './pages/Home';
+import PlayField from './pages/PlayField';
 
 function App() {
   return (
@@ -8,6 +9,7 @@ function App() {
       {/* <Home/> */}.
       
 
+      <PlayField/>
     </div>
   )
 }
