@@ -12,6 +12,8 @@ import Profile from './pages/Profile';
 import App from './App'
 import ErrorPage from './pages/Error';
 import Board from './components/Board';
+import SignUp from './pages/Signup';
+import Login from './pages/Login';
 
 const router = createBrowserRouter([
   {
@@ -27,6 +29,16 @@ const router = createBrowserRouter([
   {
     path:"/board",
     element:<Board/>,
+    errorElement:<ErrorPage/>
+  },
+  {
+    path:"/login",
+    element:<Login/>,
+    errorElement:<ErrorPage/>
+  },
+  {
+    path:"/signup",
+    element:<SignUp/>,
     errorElement:<ErrorPage/>
   }
   

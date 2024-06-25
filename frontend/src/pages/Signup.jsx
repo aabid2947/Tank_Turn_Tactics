@@ -1,9 +1,13 @@
 import React from 'react'
+import SignUpCard from '../cards/SignUpCard'
 
-export default function Signup() {
+export default function SignUp() {
   return (
-    <div>
-      
-    </div>
+      <>
+      <div className='flex flex-wrap content-center justify-center'>
+
+      <SignUpCard/>
+      </div>
+      </>
   )
 }
