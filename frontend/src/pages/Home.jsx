@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Header from "../components/Header";
 import axios from "axios";
 
 export default function Home() {
@@ -36,8 +35,7 @@ export default function Home() {
     }
   }
   return (
-    <div style={{ backgroundColor: "#15202b" }}>
-      <Header />
+    <div >
       <div className="container-fluid mx-5 ">
         <div className="row d-flex justify-content-end mx-5">
           <div className="col  ">
