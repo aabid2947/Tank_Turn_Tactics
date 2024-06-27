@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import '../output.css'
 
 export default function Home() {
   const [isInputID, setIsInputID] = useState(false);
@@ -36,7 +37,7 @@ export default function Home() {
   }
   return (
     <div >
-      <div className="container-fluid mx-5 ">
+      <div className=" mx-5 h-screen  ">
         <div className="row d-flex justify-content-end mx-5">
           <div className="col  ">
             <p className="text-white fs-1">

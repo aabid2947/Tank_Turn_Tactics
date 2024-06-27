@@ -1,18 +1,21 @@
-import logo from './logo.svg';
+
 import './App.css';
-import Home from './pages/Home';
-import PlayField from './pages/PlayField';
+import Home from './components/Home';
 import Footer from './components/Footer';
-import './assets/backgound.jpg'
 import './output.css'
-import PlayerList from './components/PlayerList';
+import Header from './components/Header';
+
+
 function App() {
   return (
-    <div  className="bg-[url('./assets/backgound.jpg')]">
+    <div  className="bg-[url('./assets/background2.avif')] bg-cover  flex flex-col justify-end">
       {/* <Home/> */}.
-      <PlayField/>
+      <div>
+
+     <Header/>
       <Home></Home>
-      <PlayerList></PlayerList>
+      </div>
+      {/* <PlayerList></PlayerList> */}
       <Footer></Footer>
     </div>
   )
